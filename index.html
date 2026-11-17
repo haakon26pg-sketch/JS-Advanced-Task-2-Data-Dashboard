@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Media Vault</title>
+    
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- header -->
+
+    <header class="main-header">
+        <h1>The Media Vault</h1>
+        <p>Your personal entertainment collection.</p>
+    </header>
+
+    <main>
+
+        <!-- dashboard statistics -->
+        <section class="dashboard">
+            <h2>Dashboard</h2>
+
+            <div class="stats-container">
+
+                <article class="stat-card">
+                    <h3>Total Entries</h3>
+                    <p id="TotalEntries">0</p>
+                </article>
+
+                    <article class="stat-card">
+                    <h3>Average Rating</h3>
+                    <p id="TotalEntries">0</p>
+                </article>
+
+                                <article class="stat-card">
+                    <h3>Completed</h3>
+                    <p id="TotalEntries">0</p>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- add media from -->
+        <section class="add-media">
+            <h2>Add New Media</h2>
+
+            <form id="mediaForm">
+
+                <label for="title">Title</label>
+                <input
+                    type="text"
+                    id="title"
+                    required
+                >
+
+                <label for="category">Category</label>
+                <select id="category" name="category">
+                    <option value="game">Video Game</option>
+                    <option value="movie">Movie</option>
+                    <option value="music">Music</option>
+                    <option value="book">Book</option>
+                </select>
+
+                <label for="rating">Rating (1-10)></label>
+                <input
+                type="number"
+                id="rating"
+                name="rating"
+                min="1"
+                max="10"
+                required
+                >
+
+                <label for="status">Status</label>
+                <select id="status" name="status">
+                    <option value="planned">Planned</option>
+                    <option value="in-progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                </select>
+
+                <label for="review">Your Reviews</label>
+                <textarea
+                id="review"
+                name="review"
+                rows="4"
+                ></textarea>
+
+                <button type="submit">
+                    Add to Library
+                </button>
+
+            </form>
+        </section>
+
+        <!-- media library -->
+        <section class="media-library">
+            <h2>My Collections</h2>
+
+            <div class="library-contraols">
+                <select id="filterCategory">
+                    <option value="all">All Categories</option>
+                    <option value="game">Video Games</option>
+                    <option value="movie">Movies</option>
+                    <option value="music">Music</option>
+                    <option value="book">Books</option>
+                </select>
+
+                <select id="sortMedia">
+                    <option value="newest">Newest First</option>
+                    <option value="highest">Highest Rated</option>
+                    <option value="lowest">Lowest Rated</option>
+                    <option value="alphabetical">A-Z</option>
+                </select>
+
+            </div>
+
+            <div id="mediaContainer" class="media-grid">
+                <!-- JavaScript generates cards here -->
+
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+</body>
+</html>

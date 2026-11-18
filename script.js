@@ -15,13 +15,17 @@ let mediaLibrary = [];
 mediaForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
-
 // retrieve form information
 const formData = new FormData(mediaForm);
 
 // convert form data into object
 const { title, category, rating, status, review } =
-Object.fromEntries(formData, entries());
+Object.fromEntries(formData.entries());
+
+
+console.log("Title", title);
+console.log("Review:", review);
+console.log("All form data", [...formData.entries()]);
 
 // create new media entry
 const newMedia = {
@@ -37,8 +41,6 @@ const newMedia = {
 // add new entry to array
 mediaLibrary.push(newMedia);
 
-console.log(mediaLibrary);
-
 // update library display
 renderLibrary();
 
@@ -47,3 +49,41 @@ mediaForm.reset();
 
 
 });
+
+// render media library
+
+function renderLibrary () {
+
+    const cards = mediaLibrary.map(
+        ({ title, category, rating, status, review}) => {
+
+            // create card
+            const card = document.createElement("article");
+            card.classList.add("media-card");
+
+            // media title
+            const heading = document.createElement("h3");
+            heading.textContent = title;
+
+            // media info
+            const details = document.createElement("p");
+            details.textContent =
+            `${category} | ${status} | ${rating}/10`;
+
+            // media review
+            const reviewText = document.createElement("p");
+            reviewText.textContent = review || "No review yet.";
+
+            // add content to card
+            card.append(heading, details, reviewText);
+
+            return card;
+        }
+    );
+
+    // display cards
+    mediaContainer.replaceChildren(...cards);
+
+    // update total entries
+    totalEntries.textContent = mediaLibrary.length;
+}

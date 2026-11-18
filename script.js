@@ -8,7 +8,16 @@ const totalEntries = document.querySelector("#totalEntries");
 
 // media library array
 
-let mediaLibrary = [];
+let mediaLibrary = JSON.parse(
+    localStorage.getItem("mediaLibrary") || "[]"
+);
+
+function saveLibrary () {
+    localStorage.setItem(
+        "mediaLibrary",
+        JSON.stringify(mediaLibrary)
+    );
+}
 
 // add new media
 
@@ -40,6 +49,12 @@ const newMedia = {
 
 // add new entry to array
 mediaLibrary.push(newMedia);
+
+// save updated array
+
+saveLibrary();
+
+console.log(mediaLibrary);
 
 // update library display
 renderLibrary();
@@ -87,3 +102,7 @@ function renderLibrary () {
     // update total entries
     totalEntries.textContent = mediaLibrary.length;
 }
+
+// initialize app
+
+renderLibrary();
